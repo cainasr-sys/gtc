@@ -10,10 +10,10 @@
   --surface2:    #f8f7f4;
   --border:      rgba(30,25,15,0.10);
   --border2:     rgba(30,25,15,0.18);
-  --gold:        #7a5800;
-  --gold2:       #5c4000;
-  --gold-dim:    rgba(122,88,0,0.08);
-  --gold-border: rgba(122,88,0,0.25);
+  --gold:        #1a5276;
+  --gold2:       #0f3d5e;
+  --gold-dim:    rgba(26,82,118,0.08);
+  --gold-border: rgba(26,82,118,0.25);
   --ink:         #1a1714;
   --ink2:        #2d2a25;
   --muted:       #4a4540;
@@ -118,7 +118,7 @@ a { color:inherit; }
 .timeline::before { content:''; position:absolute; left:7px; top:8px; bottom:8px; width:2px; background:linear-gradient(to bottom,var(--gold),var(--border2)); }
 .timeline-item { position:relative; padding:18px 0; border-bottom:1px solid var(--border); }
 .timeline-item:last-child { border-bottom:none; }
-.timeline-item::before { content:''; position:absolute; left:-26px; top:25px; width:12px; height:12px; border-radius:50%; background:var(--gold); border:2px solid var(--bg); box-shadow:0 0 0 3px rgba(122,88,0,0.18); }
+.timeline-item::before { content:''; position:absolute; left:-26px; top:25px; width:12px; height:12px; border-radius:50%; background:var(--gold); border:2px solid var(--bg); box-shadow:0 0 0 3px rgba(26,82,118,0.18); }
 .timeline-year { font-family:var(--font-mono); font-size:11px; color:var(--gold); margin-bottom:5px; letter-spacing:1px; font-weight:500; }
 .timeline-title { font-size:16px; font-weight:700; color:var(--ink); margin-bottom:7px; letter-spacing:-0.2px; }
 .timeline-body { font-size:14px; color:var(--muted); line-height:1.65; }
