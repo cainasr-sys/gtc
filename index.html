@@ -8,8 +8,8 @@
   <style>
     /* HERO */
     .hero { min-height: calc(100vh - var(--nav-h)); background: var(--bg); position: relative; overflow: hidden; display: flex; align-items: center; }
-    .hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(122,88,0,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(122,88,0,0.06) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 40%, transparent 100%); -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 40%, transparent 100%); }
-    .hero-glow { position: absolute; width: 800px; height: 800px; border-radius: 50%; background: radial-gradient(circle, rgba(122,88,0,0.05) 0%, transparent 65%); top: 50%; left: 50%; transform: translate(-50%, -60%); pointer-events: none; }
+    .hero-grid-bg { position: absolute; inset: 0; background-image: linear-gradient(rgba(26,82,118,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(26,82,118,0.06) 1px, transparent 1px); background-size: 60px 60px; mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 40%, transparent 100%); -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 40%, transparent 100%); }
+    .hero-glow { position: absolute; width: 800px; height: 800px; border-radius: 50%; background: radial-gradient(circle, rgba(26,82,118,0.05) 0%, transparent 65%); top: 50%; left: 50%; transform: translate(-50%, -60%); pointer-events: none; }
     .hero-inner { max-width: var(--max-w); margin: 0 auto; padding: 0 28px; position: relative; z-index: 2; width: 100%; }
     .hero-eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 22px; }
     .hero-eyebrow-line { width: 32px; height: 2px; background: var(--gold); border-radius: 2px; flex-shrink: 0; }
@@ -74,12 +74,13 @@
       <span class="nav-logo-text">GTC 2026</span>
     </a>
     <div class="nav-links">
-      <a href="1_evento.html" class="nav-link">Evento</a>
+      <a href="1_evento.html" class="nav-link">Semana</a>
       <a href="2_nvidia.html" class="nav-link">NVIDIA: História</a>
       <a href="3_insight_deck.html" class="nav-link">Insight Deck</a>
-      <a href="4_ai_investimentos.html" class="nav-link">AI & Investimentos</a>
+      <a href="3b_crewai.html" class="nav-link">CrewAI</a>
+      <a href="4_ai_investimentos.html" class="nav-link">Investidores</a>
       <a href="5_physical_ai.html" class="nav-link">Physical AI</a>
-      <a href="6_ia_capital_solutions.html" class="nav-link">Capital Solutions</a>
+      <a href="6_ia_capital_solutions.html" class="nav-link">AI for Financials</a>
       <a href="7_revolut_summary.html" class="nav-link">Revolut</a>
       <a href="8_situational_awareness.html" class="nav-link">Situational Awareness</a>
     </div>
@@ -139,7 +140,7 @@
     <div class="chapter-grid">
 
       <a href="1_evento.html" class="chapter-card" data-color="gold">
-        <div class="chapter-num">01 — Evento</div>
+        <div class="chapter-num">01 — Semana</div>
         <div class="chapter-title">NVIDIA GTC: Full-Stack AI Revolution</div>
         <div class="chapter-desc">De AI Factories à Physical Intelligence. A visão completa apresentada no maior evento de tecnologia de 2026 — com 450+ sponsors, 1.000 sessões técnicas e 2.000 palestrantes.</div>
         <div class="chapter-tags">
@@ -170,9 +171,19 @@
           <span class="chapter-tag">Ecosystem Map</span>
         </div>
       </a>
+      <a href="3b_crewai.html" class="chapter-card" data-color="red">
+        <div class="chapter-num">03B — CrewAI</div>
+        <div class="chapter-title">CrewAI: Accelerate AI Agents Adoption</div>
+        <div class="chapter-desc">Como a CrewAI está redefinindo a adoção de AI Agents nas empresas — arquitetura multi-agent, casos reais, métricas de impacto e a visão apresentada durante a GTC Week 2026.</div>
+        <div class="chapter-tags">
+          <span class="chapter-tag">AI Agents</span>
+          <span class="chapter-tag">Multi-Agent</span>
+          <span class="chapter-tag">Enterprise AI</span>
+        </div>
+      </a>
 
       <a href="4_ai_investimentos.html" class="chapter-card" data-color="green">
-        <div class="chapter-num">04 — AI & Investimentos</div>
+        <div class="chapter-num">04 — Investidores</div>
         <div class="chapter-title">Três Perspectivas sobre a Transformação</div>
         <div class="chapter-desc">Howard Marks, Brookfield, NVIDIA, Cisco, CoreWeave — onde convergem e divergem. O Colapso do Terminal Value e como AI altera o próprio mecanismo de precificação.</div>
         <div class="chapter-tags">
@@ -194,7 +205,7 @@
       </a>
 
       <a href="6_ia_capital_solutions.html" class="chapter-card" data-color="blue">
-        <div class="chapter-num">06 — Capital Solutions</div>
+        <div class="chapter-num">06 — AI for Financials</div>
         <div class="chapter-title">IA em Special Situations & Distressed Debt</div>
         <div class="chapter-desc">NBIM, renda fixa sistemática, estratégia empresarial. Como os maiores fundos do mundo estão implementando AI — lições do maior fundo soberano e o paradoxo de Jevons no mercado financeiro.</div>
         <div class="chapter-tags">
@@ -295,7 +306,7 @@
   <div class="footer-inner">
     <div class="footer-brand">GTC 2026 — Intelligence Briefing</div>
     <ul class="footer-links">
-      <li><a href="1_evento.html">Evento</a></li>
+      <li><a href="1_evento.html">Semana</a></li>
       <li><a href="2_nvidia.html">NVIDIA</a></li>
       <li><a href="4_ai_investimentos.html">Investimentos</a></li>
       <li><a href="8_situational_awareness.html">Situational Awareness</a></li>
