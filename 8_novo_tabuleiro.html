@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>O Novo Tabuleiro do Mercado Financeiro — GTC 2026</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <style>
+    /* ── HERO ── */
+    .hero { background: var(--bg2); border-bottom: 2px solid var(--border2); padding: 80px 28px 64px; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; top: -200px; right: -200px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(26,82,118,0.06) 0%, transparent 65%); pointer-events: none; }
+    .hero-inner { max-width: var(--max-w); margin: 0 auto; position: relative; z-index: 1; }
+    .hero-eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .hero-eyebrow-line { width: 28px; height: 2px; background: var(--gold); border-radius: 2px; flex-shrink: 0; }
+    .hero-eyebrow-text { font-family: var(--font-mono); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 500; }
+    .hero-tag { display: inline-block; background: var(--gold-dim); border: 1px solid var(--gold-border); color: var(--gold2); font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 100px; }
+    .hero-title { font-size: clamp(28px, 4vw, 52px); font-weight: 800; line-height: 1.1; color: var(--ink); max-width: 860px; margin-bottom: 10px; letter-spacing: -1.5px; }
+    .hero-subtitle { font-size: 16px; color: var(--muted); line-height: 1.6; max-width: 640px; margin-bottom: 36px; }
+    .hero-meta { display: flex; gap: 28px; flex-wrap: wrap; }
+    .hero-meta-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted2); }
+    .hero-meta-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; flex-shrink: 0; }
+
+    /* ── BLOCO LABEL ── */
+    .bloco-label { display: inline-flex; align-items: center; gap: 8px; background: var(--gold); color: #fff; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; margin-bottom: 32px; }
+
+    /* ── EXECUTIVE BRIEF ── */
+    .exec-brief { background: var(--surface); border: 1px solid var(--border2); border-radius: var(--r); padding: 40px 44px; margin-bottom: 44px; border-left: 5px solid var(--gold); }
+    .exec-brief-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 16px; }
+    .exec-brief-title { font-size: 22px; font-weight: 800; color: var(--ink); margin-bottom: 16px; letter-spacing: -0.5px; }
+    .exec-brief-body { font-size: 16px; color: var(--ink2); line-height: 1.8; margin-bottom: 0; }
+    .exec-brief-question { font-size: 17px; font-style: italic; font-weight: 600; color: var(--gold2); line-height: 1.6; margin-top: 16px; border-top: 1px solid var(--border2); padding-top: 16px; }
+
+    /* ── SIGNAL GRID ── */
+    .signal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; margin: 28px 0; }
+    .signal-item { background: var(--surface); border: 1px solid var(--border2); border-radius: var(--r); padding: 20px 18px; border-top: 3px solid var(--gold); }
+    .signal-company { font-family: var(--font-mono); font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 8px; }
+    .signal-stat { font-size: 26px; font-weight: 800; color: var(--ink); line-height: 1; margin-bottom: 6px; letter-spacing: -1px; }
+    .signal-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+    /* ── THEME LIST ── */
+    .theme-list { display: flex; flex-direction: column; gap: 12px; margin: 20px 0; }
+    .theme-item { display: flex; gap: 16px; align-items: flex-start; padding: 16px 20px; background: var(--surface); border: 1px solid var(--border2); border-radius: var(--r); }
+    .theme-num { flex-shrink: 0; width: 32px; height: 32px; background: var(--gold-dim); border: 1px solid var(--gold-border); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 12px; font-weight: 700; color: var(--gold); }
+    .theme-text { font-size: 14px; color: var(--ink2); line-height: 1.55; }
+    .theme-text strong { color: var(--ink); font-weight: 700; }
+
+    /* ── SUB SECTION ── */
+    .subsection { margin-bottom: 40px; }
+    .subsection-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 2px solid var(--border2); }
+    .subsection-num { font-family: var(--font-mono); font-size: 11px; color: var(--gold); font-weight: 600; letter-spacing: 1px; }
+    .subsection-title { font-size: 19px; font-weight: 700; color: var(--ink); letter-spacing: -0.3px; }
+    .item-list { display: flex; flex-direction: column; gap: 14px; }
+    .item-block { background: var(--surface); border: 1px solid var(--border2); border-radius: var(--r); padding: 18px 20px; }
+    .item-block-co { font-size: 13px; font-weight: 700; color: var(--gold2); margin-bottom: 6px; }
+    .item-block-body { font-size: 13.5px; color: var(--ink2); line-height: 1.6; }
+    .item-block-body ul { padding-left: 18px; margin-top: 6px; display: flex; flex-direction: column; gap: 4px; }
+    .item-block-body li { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+    /* ── INNOVATION CARDS ── */
+    .innov-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 20px 0; }
+    .innov-card { background: var(--surface); border: 1px solid var(--border2); border-radius: var(--r); padding: 24px 22px; }
+    .innov-card-num { font-family: var(--font-mono); font-size: 10px; color: var(--gold); letter-spacing: 2px; margin-bottom: 8px; font-weight: 600; }
+    .innov-card-title { font-size: 16px; font-weight: 700; color: var(--ink); margin-bottom: 10px; letter-spacing: -0.2px; }
+    .innov-card-body { font-size: 13.5px; color: var(--muted); line-height: 1.65; }
+    .innov-card-implication { margin-top: 12px; padding: 10px 14px; background: var(--gold-dim); border-radius: 6px; font-size: 12.5px; font-style: italic; color: var(--gold2); line-height: 1.5; }
+    .innov-card.full { grid-column: 1 / -1; }
+
+    /* ── RISK GRID ── */
+    .risk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
+    .risk-card { background: var(--surface); border: 1px solid var(--border2); border-radius: var(--r); padding: 20px 22px; }
+    .risk-card-title { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+    .risk-card-body { font-size: 13px; color: var(--muted); line-height: 1.6; }
+    .risk-card-mitigation { margin-top: 10px; padding: 8px 12px; background: rgba(192,38,10,0.05); border-left: 3px solid var(--red); border-radius: 0 4px 4px 0; font-size: 12px; color: var(--red); line-height: 1.5; }
+    .risk-badge { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; padding: 2px 7px; border-radius: 100px; margin-bottom: 10px; }
+    .risk-badge.curto { background: rgba(192,38,10,0.1); color: var(--red); border: 1px solid rgba(192,38,10,0.2); }
+    .risk-badge.estrutural { background: rgba(26,82,118,0.08); color: var(--gold2); border: 1px solid var(--gold-border); }
+
+    /* ── AGENTS TABLE ── */
+    .agents-table-wrap { overflow-x: auto; margin: 20px 0; }
+    .agents-table { width: 100%; border-collapse: collapse; font-size: 13px; background: var(--surface); border-radius: var(--r); overflow: hidden; border: 1px solid var(--border2); }
+    .agents-table th { text-align: left; padding: 10px 14px; font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--muted); background: var(--bg2); border-bottom: 2px solid var(--border2); white-space: nowrap; }
+    .agents-table td { padding: 12px 14px; color: var(--ink2); border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
+    .agents-table tr:last-child td { border-bottom: none; }
+    .agents-table tr:hover td { background: var(--bg2); }
+    .agent-name { font-weight: 700; color: var(--gold2); }
+    .badge-auto { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 100px; white-space: nowrap; }
+    .badge-auto.copilot { background: var(--gold-dim); color: var(--gold2); border: 1px solid var(--gold-border); }
+    .badge-auto.semi { background: rgba(26,82,118,0.05); color: var(--accent); border: 1px solid rgba(26,69,168,0.2); }
+    .badge-auto.autonomo { background: rgba(22,101,52,0.08); color: #166534; border: 1px solid rgba(22,101,52,0.2); }
+    .badge-profile { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 100px; white-space: nowrap; }
+    .badge-profile.quick { background: rgba(22,101,52,0.08); color: #166534; border: 1px solid rgba(22,101,52,0.2); }
+    .badge-profile.transf { background: rgba(26,82,118,0.08); color: var(--gold2); border: 1px solid var(--gold-border); }
+
+    /* ── AGENT DETAIL CARDS ── */
+    .agent-detail { background: var(--surface); border: 1px solid var(--border2); border-radius: var(--r); padding: 28px 30px; margin-bottom: 20px; }
+    .agent-detail-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+    .agent-detail-name { font-size: 18px; font-weight: 800; color: var(--gold2); letter-spacing: -0.3px; }
+    .agent-detail-badges { display: flex; gap: 6px; align-items: center; }
+    .agent-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .agent-field { background: var(--bg2); border-radius: 6px; padding: 12px 14px; }
+    .agent-field.full { grid-column: 1 / -1; }
+    .agent-field-label { font-family: var(--font-mono); font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--light); font-weight: 600; margin-bottom: 6px; }
+    .agent-field-value { font-size: 13px; color: var(--ink2); line-height: 1.6; }
+    .agent-field-value strong { color: var(--ink); font-weight: 600; }
+
+    /* ── STACK LEVELS ── */
+    .stack-level { margin-bottom: 36px; }
+    .stack-level-header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; padding: 18px 22px; border-radius: var(--r); }
+    .stack-level-header.l1 { background: rgba(22,101,52,0.06); border: 1px solid rgba(22,101,52,0.15); }
+    .stack-level-header.l2 { background: rgba(26,82,118,0.06); border: 1px solid var(--gold-border); }
+    .stack-level-header.l3 { background: rgba(26,69,168,0.06); border: 1px solid rgba(26,69,168,0.2); }
+    .stack-badge { width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; flex-shrink: 0; }
+    .stack-badge.l1 { background: rgba(22,101,52,0.12); color: #166534; }
+    .stack-badge.l2 { background: var(--gold-dim); color: var(--gold2); }
+    .stack-badge.l3 { background: rgba(26,69,168,0.1); color: var(--accent); }
+    .stack-level-title { font-size: 17px; font-weight: 700; color: var(--ink); letter-spacing: -0.3px; }
+    .stack-level-subtitle { font-size: 12px; color: var(--muted); margin-top: 2px; }
+    .stack-level-cost { font-family: var(--font-mono); font-size: 11px; color: var(--muted2); margin-left: auto; border: 1px solid var(--border2); padding: 3px 10px; border-radius: 100px; white-space: nowrap; }
+    .stack-tools { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .stack-tool { background: var(--surface); border: 1px solid var(--border2); border-radius: 8px; padding: 14px 16px; }
+    .stack-tool-label { font-size: 11px; font-weight: 700; color: var(--gold2); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+    .stack-tool-body { font-size: 13px; color: var(--muted); line-height: 1.55; }
+    .stack-tool-body ul { padding-left: 16px; margin-top: 4px; display: flex; flex-direction: column; gap: 3px; }
+    .stack-tool-body li { font-size: 12.5px; }
+
+    /* ── CLOSING ── */
+    .closing-section { background: var(--ink); color: #fff; border-radius: var(--r); padding: 48px 52px; margin: 44px 0; position: relative; overflow: hidden; }
+    .closing-section::before { content: 'GTC'; position: absolute; right: -20px; bottom: -30px; font-size: 160px; font-weight: 800; color: rgba(255,255,255,0.03); letter-spacing: -8px; line-height: 1; pointer-events: none; }
+    .closing-label { font-family: var(--font-mono); font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 20px; }
+    .closing-title { font-size: clamp(18px, 2.5vw, 28px); font-weight: 800; color: #fff; line-height: 1.25; margin-bottom: 20px; letter-spacing: -0.5px; }
+    .closing-body { font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.8; margin-bottom: 14px; max-width: 820px; }
+    .closing-cta { display: inline-flex; align-items: center; gap: 8px; background: var(--gold); color: #fff; font-size: 13px; font-weight: 700; padding: 12px 24px; border-radius: 6px; text-decoration: none; margin-top: 10px; transition: background 0.2s; }
+    .closing-cta:hover { background: var(--gold2); }
+    .closing-agents { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 32px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.1); }
+    .closing-agent-item { padding: 14px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; }
+    .closing-agent-name { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.9); margin-bottom: 5px; }
+    .closing-agent-desc { font-size: 12px; color: rgba(255,255,255,0.45); line-height: 1.5; }
+
+    /* ── HABITS ── */
+    .habits-list { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 20px 0; }
+    .habit-item { display: flex; gap: 12px; align-items: flex-start; background: var(--surface); border: 1px solid var(--border2); border-radius: 8px; padding: 14px 16px; }
+    .habit-icon { width: 28px; height: 28px; background: var(--gold-dim); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; }
+    .habit-text { font-size: 13px; color: var(--ink2); line-height: 1.6; }
+
+    /* ── NAV NEXT/PREV ── */
+    .page-nav { display: flex; justify-content: space-between; align-items: center; padding: 24px 0; border-top: 1px solid var(--border2); margin-top: 60px; }
+    .page-nav a { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; color: var(--muted2); text-decoration: none; transition: color 0.15s; }
+    .page-nav a:hover { color: var(--gold); }
+    .page-nav .prev::before { content: '←'; }
+    .page-nav .next::after { content: '→'; }
+
+    @media(max-width:860px) {
+      .innov-grid, .risk-grid, .stack-tools, .habits-list, .closing-agents { grid-template-columns: 1fr; }
+      .agent-detail-grid { grid-template-columns: 1fr; }
+      .closing-section { padding: 32px 24px; }
+      .exec-brief { padding: 26px 22px; }
+    }
+    @media(max-width:600px) {
+      .signal-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-mark">G</div>
+      <span class="nav-logo-text">GTC 2026</span>
+    </a>
+    <div class="nav-links">
+      <a href="1_evento.html" class="nav-link">Semana</a>
+      <a href="2_nvidia.html" class="nav-link">NVIDIA: História</a>
+      <a href="3_insight_deck.html" class="nav-link">Insight Deck</a>
+      <a href="3b_crewai.html" class="nav-link">CrewAI</a>
+      <a href="4_ai_investimentos.html" class="nav-link">Investidores</a>
+      <a href="5_physical_ai.html" class="nav-link">Physical AI</a>
+      <a href="6_ia_capital_solutions.html" class="nav-link">AI for Financials</a>
+      <a href="7_revolut_summary.html" class="nav-link">Revolut</a>
+      <a href="8_novo_tabuleiro.html" class="nav-link">Novo Tabuleiro</a>
+      <a href="9_situational_awareness.html" class="nav-link">Situational Awareness</a>
+    </div>
+    <div class="nav-tag">Março 2026</div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow fade-in">
+      <div class="hero-eyebrow-line"></div>
+      <span class="hero-eyebrow-text">AI &amp; Agentic AI — Lições da GTC 2026</span>
+      <span class="hero-tag">Confidencial</span>
+    </div>
+    <h1 class="hero-title fade-in-2">O Novo Tabuleiro<br>do Mercado Financeiro</h1>
+    <p class="hero-subtitle fade-in-3">
+      Estamos na terceira onda da revolução de AI — a onda agentic — e o mercado financeiro está no início de uma ruptura estrutural. Esta apresentação consolida evidências, frameworks e aplicações práticas para special situations e distressed debt.
+    </p>
+    <div class="hero-meta fade-in-3">
+      <span class="hero-meta-item"><span class="hero-meta-dot"></span>San Francisco, Março 2026</span>
+      <span class="hero-meta-item"><span class="hero-meta-dot"></span>NVIDIA GTC 2026</span>
+      <span class="hero-meta-item"><span class="hero-meta-dot"></span>Uso Interno</span>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN CONTENT -->
+<main class="page-main">
+
+  <!-- ──────────────────────────────────────── -->
+  <!-- BLOCO A — EXECUTIVE BRIEF               -->
+  <!-- ──────────────────────────────────────── -->
+  <div class="bloco-label">Bloco A — Executive Brief</div>
+
+  <div class="exec-brief fade-in">
+    <div class="exec-brief-label">Mensagem Central</div>
+    <div class="exec-brief-title">A mudança já começou. Ela é mais profunda do que parece.</div>
+    <p class="exec-brief-body">
+      A pergunta já não é <em>"o que a AI pode fazer por mim?"</em>
+      A pergunta é: como você opera num mundo onde seus competidores já têm analistas sintéticos trabalhando 24/7,
+      varrendo dados que nenhum humano conseguiria processar, a uma fração do custo?
+    </p>
+    <p class="exec-brief-question">
+      O risco de ficar para trás não é abstrato: é perder deals para quem os identificou mais rápido, perder tempo com tarefas que deveriam ser delegadas a agentes, e perder talento para firmas que já operam nesse paradigma.
+    </p>
+  </div>
+
+  <!-- STATS -->
+  <div class="signal-grid">
+    <div class="signal-item">
+      <div class="signal-company">AIMA, 2025</div>
+      <div class="signal-stat">95%</div>
+      <div class="signal-desc">dos gestores de fundos alternativos já usam Gen AI no trabalho. Deixou de ser experimento — é infraestrutura.</div>
+    </div>
+    <div class="signal-item">
+      <div class="signal-company">JPMorgan</div>
+      <div class="signal-stat">200K</div>
+      <div class="signal-desc">usuários no LLM Suite em 8 meses. 450 casos de uso em produção. Orçamento de tecnologia: $18B/ano.</div>
+    </div>
+    <div class="signal-item">
+      <div class="signal-company">Goldman Sachs</div>
+      <div class="signal-stat">46.500</div>
+      <div class="signal-desc">funcionários com GS AI Assistant. Bugs pós-release caíram 15%. Um IPO prospectus que levava 2 semanas: agora em minutos.</div>
+    </div>
+    <div class="signal-item">
+      <div class="signal-company">XTX Markets</div>
+      <div class="signal-stat">$250B</div>
+      <div class="signal-desc">em volume diário de trading processado por 25.000+ chips de AI. Lucro líquido de £835M.</div>
+    </div>
+    <div class="signal-item">
+      <div class="signal-company">McKinsey</div>
+      <div class="signal-stat">25–40%</div>
+      <div class="signal-desc">da base de custos do asset manager médio pode ser impactada por AI. Não é otimização — é reestruturação.</div>
+    </div>
+  </div>
+
+  <div class="pullquote">
+    <p>Special situations, distressed debt e infraestrutura são exatamente os domínios onde AI cria maior vantagem: dados fragmentados, processos judiciais complexos, múltiplas jurisdições, análise qualitativa intensiva.</p>
+  </div>
+
+  <!-- 5 TEMAS -->
+  <div class="section-block">
+    <div class="section-title">Os 5 Temas Centrais</div>
+    <div class="theme-list">
+      <div class="theme-item">
+        <div class="theme-num">1</div>
+        <div class="theme-text"><strong>O que o mercado financeiro já está fazendo</strong> — casos reais, não intenções.</div>
+      </div>
+      <div class="theme-item">
+        <div class="theme-num">2</div>
+        <div class="theme-text"><strong>Inovações que podem mudar estruturalmente o setor</strong> — do analista sintético ao compute como capital.</div>
+      </div>
+      <div class="theme-item">
+        <div class="theme-num">3</div>
+        <div class="theme-text"><strong>Riscos sérios que ninguém deve subestimar</strong> — alucinação, auditabilidade, risco regulatório.</div>
+      </div>
+      <div class="theme-item">
+        <div class="theme-num">4</div>
+        <div class="theme-text"><strong>Agentes que podemos construir</strong> para special situations e distressed.</div>
+      </div>
+      <div class="theme-item">
+        <div class="theme-num">5</div>
+        <div class="theme-text"><strong>O stack do analista do futuro</strong> — do mínimo viável ao competitivo.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <h3>Urgência Estratégica</h3>
+    <p style="font-size:14px;color:var(--muted);line-height:1.7">A janela de diferenciação via AI é <strong style="color:var(--gold2)">agora</strong> — não em 2 anos. Quem começa hoje constrói flywheel de dados, processos e cultura. Quem espera enfrenta o custo de "virar o barco" quando a competição já chegou na velocidade de cruzeiro.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ──────────────────────────────────────── -->
+  <!-- BLOCO B — DEEP OUTPUTS                  -->
+  <!-- ──────────────────────────────────────── -->
+  <div class="bloco-label">Bloco B — Deep Outputs</div>
+
+  <!-- 1. O QUE JÁ ESTÁ ACONTECENDO -->
+  <div class="section-block">
+    <div class="section-title">1. O Que Já Está Acontecendo no Mercado Financeiro</div>
+    <p class="section-subtitle">Iniciativas em produção — com dados e empresas identificadas.</p>
+
+    <!-- 1.1 -->
+    <div class="subsection">
+      <div class="subsection-header">
+        <span class="subsection-num">1.1</span>
+        <span class="subsection-title">Produtividade &amp; Copilots Internos</span>
+      </div>
+      <div class="item-list">
+        <div class="item-block">
+          <div class="item-block-co">JPMorgan Chase — LLM Suite</div>
+          <div class="item-block-body">
+            200K usuários em 8 meses. Bankers criam pitch decks de 5 páginas em ~30 segundos. Redução de 40–60% em tarefas repetitivas de analistas junior.
+            <ul><li>Orçamento AI: $2B/ano</li><li>450 casos de uso em produção</li></ul>
+          </div>
+        </div>
+        <div class="item-block">
+          <div class="item-block-co">Goldman Sachs — GS AI Assistant</div>
+          <div class="item-block-body">
+            Banker Copilot, Research Assistant, Developer Copilot para 12K engenheiros (–15% bugs pós-release). Deploy de agentes autônomos de código em escala — projeção de 3–4x ganho de produtividade.
+            <ul><li>46.500 funcionários com acesso</li><li>IPO prospectus: 2 semanas e 6 pessoas → minutos</li></ul>
+          </div>
+        </div>
+        <div class="two-col">
+          <div class="item-block">
+            <div class="item-block-co">Bank of America — Erica for Employees</div>
+            <div class="item-block-body">Adotado por 90% dos 213K funcionários. Reduziu chamados de suporte de TI em 50%. Investimento: $4B em AI/tech em 2025.</div>
+          </div>
+          <div class="item-block">
+            <div class="item-block-co">Morgan Stanley — AI @ Morgan Stanley</div>
+            <div class="item-block-body">Acesso a ~100K relatórios de pesquisa via linguagem natural. 98% de adoção. AI Debrief: economiza 30 min por reunião de cliente.</div>
+          </div>
+        </div>
+        <div class="item-block">
+          <div class="item-block-co">BlackRock — Aladdin Copilot</div>
+          <div class="item-block-body">Aladdin Copilot com Gen AI. eFront Copilot para private markets. Arquitetura privacy-first: dados sensíveis nunca expostos ao LLM. Aquisição de Preqin por $3.2B para dados de private markets.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1.2 -->
+    <div class="subsection">
+      <div class="subsection-header">
+        <span class="subsection-num">1.2</span>
+        <span class="subsection-title">Research &amp; Knowledge Management</span>
+      </div>
+      <div class="item-list">
+        <div class="item-block">
+          <div class="item-block-co">Balyasny Asset Management</div>
+          <div class="item-block-body">Agentes LLM que sintetizam autonomamente SEC filings, monitoram catalysts e antecipam riscos emergentes — fluxos de trabalho que antes exigiam analistas dedicados.</div>
+        </div>
+        <div class="two-col">
+          <div class="item-block">
+            <div class="item-block-co">JPMorgan SpectrumGPT</div>
+            <div class="item-block-body">Motor de "nudge" para portfolio managers — detecta sinais de mercado, monitora risco e acompanha research/earnings em tempo real.</div>
+          </div>
+          <div class="item-block">
+            <div class="item-block-co">Man Group (AHL)</div>
+            <div class="item-block-body">Otimização de portfólio via neural networks e reinforcement learning. Ajuste dinâmico de estratégias entre asset classes.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1.3 -->
+    <div class="subsection">
+      <div class="subsection-header">
+        <span class="subsection-num">1.3</span>
+        <span class="subsection-title">Sales, Trading &amp; Execution</span>
+      </div>
+      <div class="item-list">
+        <div class="item-block">
+          <div class="item-block-co">XTX Markets</div>
+          <div class="item-block-body">25.000+ AI chips processando $250B em volume diário de trading. Lucro líquido de £835M. Infraestrutura AI como novo baseline competitivo para market makers.</div>
+        </div>
+        <div class="item-block">
+          <div class="item-block-co">Goldman Sachs — Trading com RL</div>
+          <div class="item-block-body">Reinforcement learning para derivatives e execution trading. Desenvolvendo "comportamento agentic" onde AI completa tarefas autonomamente em trading. JPMorgan IndexGPT: criação de estratégias de investimento temáticas customizadas via AI.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1.4 -->
+    <div class="subsection">
+      <div class="subsection-header">
+        <span class="subsection-num">1.4</span>
+        <span class="subsection-title">Underwriting &amp; Crédito</span>
+      </div>
+      <div class="item-list">
+        <div class="two-col">
+          <div class="item-block">
+            <div class="item-block-co">Wells Fargo</div>
+            <div class="item-block-body">AI re-underwriting de 15 anos de documentos de empréstimos via redes neurais compostas — compound systems com múltiplos modelos para tarefas complexas.</div>
+          </div>
+          <div class="item-block">
+            <div class="item-block-co">JPMorgan DocLLM</div>
+            <div class="item-block-body">Modelo proprietário para processar volumes massivos de documentos não-estruturados. Potencial disruptivo em underwriting de crédito complexo.</div>
+          </div>
+        </div>
+        <div class="item-block">
+          <div class="item-block-co">Brookfield</div>
+          <div class="item-block-body">AI para decisões de autorização de seguros de alto valor (ex: cirurgias de $150K) — entrega dados em tempo real a agentes de decisão. Plataformas de private credit incorporando dados não-estruturados (sentimento, judicial, regulatório).</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1.5 -->
+    <div class="subsection">
+      <div class="subsection-header">
+        <span class="subsection-num">1.5</span>
+        <span class="subsection-title">Compliance, Risk, KYC &amp; AML</span>
+      </div>
+      <div class="item-list">
+        <div class="item-block">
+          <div class="item-block-co">Citigroup</div>
+          <div class="item-block-body">Detecção de fraude 10× mais eficiente com 10× menos falsos positivos e 30% menos falsos negativos. Processamento de insights de 400M+ consumidores. Melhoria de 50bps em otimização de pagamentos via AI.</div>
+        </div>
+        <div class="two-col">
+          <div class="item-block">
+            <div class="item-block-co">JPMorgan — AI Fraud &amp; AML</div>
+            <div class="item-block-body">Prevenindo bilhões em perdas. Redução de carga operacional em falsos positivos. KYC Agent: extrai informações de chamadas, e-mails e documentos.</div>
+          </div>
+          <div class="item-block">
+            <div class="item-block-co">Reguladores</div>
+            <div class="item-block-body">Banco Central da Inglaterra: AI Consortium iniciado em maio 2025. BCE desenvolvendo ferramentas de supervisão baseadas em AI.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1.8 -->
+    <div class="subsection">
+      <div class="subsection-header">
+        <span class="subsection-num">1.8</span>
+        <span class="subsection-title">Agentes Autônomos — A Fronteira que Muda Tudo</span>
+      </div>
+      <div class="item-list">
+        <div class="item-block">
+          <div class="item-block-co">Goldman Sachs — Julho 2025</div>
+          <div class="item-block-body">Deploy de milhares de AI agents como "engenheiros de software digitais" — agentes que desenvolvem aplicações inteiras de forma independente. Projeção: 3–4× ganho de produtividade.</div>
+        </div>
+        <div class="item-block">
+          <div class="item-block-co">NVIDIA Internamente — Agentes "Claws"</div>
+          <div class="item-block-body">Agentes que automatizam desenvolvimento consumindo milhões de vezes mais tokens do que chatbots. Benchmark interno: engenheiro de $500K deve consumir $250K em tokens/ano. OpenClaw: +1,5M downloads — funciona como SO para AI pessoal.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 2. INOVAÇÕES -->
+  <div class="section-block">
+    <div class="section-title">2. Inovações que Podem Transformar o Mercado Financeiro</div>
+    <p class="section-subtitle">Além do que está em produção — o que muda estruturalmente como capital é alocado.</p>
+
+    <div class="innov-grid">
+      <div class="innov-card">
+        <div class="innov-card-num">2.1</div>
+        <div class="innov-card-title">Deep Research Agents — O Analista Sintético</div>
+        <div class="innov-card-body">Um agente recebe uma query aberta e executa 30–80 etapas autônomas de pesquisa — buscando documentos, extraindo dados, cruzando fontes, sintetizando. Sistemas multi-agente: orquestrador → planner → sub-agentes especializados → agente de síntese. Modelos menores com fine-tuning chegam à paridade com GPT-4 em tarefas específicas a custo radicalmente menor.</div>
+        <div class="innov-card-implication">Implicação: um agente que lê 500 páginas de um processo judicial, 10 anos de demonstrações e 3 anos de atas — e entrega um IC Memo em horas, não dias.</div>
+      </div>
+
+      <div class="innov-card">
+        <div class="innov-card-num">2.2</div>
+        <div class="innov-card-title">Parsing Jurídico e Regulatório Automatizado</div>
+        <div class="innov-card-body">AI para extração de dados de processos judiciais, arbitragem e regulação. Modelos multimodais capazes de processar documentos escaneados com baixa qualidade de OCR — vital para NPL e créditos brasileiros. Harvey AI e Luminance já usados em grandes escritórios para due diligence de M&amp;A. Próximo passo: integração com fluxo de investment decision.</div>
+        <div class="innov-card-implication">Vertical agents para litigation finance: estimativa de probabilidade de êxito, valor esperado de processos, patterns em decisões de tribunais específicos.</div>
+      </div>
+
+      <div class="innov-card">
+        <div class="innov-card-num">2.3</div>
+        <div class="innov-card-title">Autonomous Portfolio Surveillance</div>
+        <div class="innov-card-body">Agentes que monitoram portfolios 24/7 com alertas de eventos (inadimplência, trigger de covenant, notícia adversa, mudança regulatória). Integração com TJSP, STJ, CVM, Diário Oficial, filings, news, dados de crédito — camada de inteligência unificada. Análogo às value functions do RL: agentes que "sabem" quando uma posição está em deterioração antes que o humano perceba.</div>
+      </div>
+
+      <div class="innov-card">
+        <div class="innov-card-num">2.4</div>
+        <div class="innov-card-title">Synthetic Analysts &amp; IC Memo Automation</div>
+        <div class="innov-card-body">Goldman Sachs: prospecto de IPO de 95% em minutos. A mesma lógica se aplica a investment committee memos, credit memos, relatórios de due diligence. Agente que gera primeiro rascunho completo (executivo, financeiro, jurídico, de risco) a partir de documentos brutos — analista revisa e refina, em vez de começar do zero.</div>
+      </div>
+
+      <div class="innov-card">
+        <div class="innov-card-num">2.5</div>
+        <div class="innov-card-title">AI-Native Investment Processes</div>
+        <div class="innov-card-body">Firmas construindo processos onde a AI não é ferramenta auxiliar, mas parte da estrutura decisória — com memória de longo prazo e integração ao CRM/deal pipeline. Originação inteligente: agentes que varrem DOU, TJSP, CVM, mídia setorial para identificar sinais de distress antes que o mercado precifique a oportunidade.</div>
+      </div>
+
+      <div class="innov-card">
+        <div class="innov-card-num">2.6</div>
+        <div class="innov-card-title">Multimodal AI &amp; Alternative Data</div>
+        <div class="innov-card-body">Satellite imagery, visão computacional, sensores de tráfego — já usados por hedge funds para antecipar resultados de varejo e logística. Modelos LLM + visão: capazes de analisar plantas industriais, imagens de satélite de obras. Processamento de áudio de earnings calls e assembleias: análise de sentimento, hesitação, mudanças de tom.</div>
+      </div>
+
+      <div class="innov-card full">
+        <div class="innov-card-num">2.7</div>
+        <div class="innov-card-title">Compute como Capital — O Paradigma Jensen Huang</div>
+        <div class="innov-card-body" style="font-size:15px">Jensen Huang na GTC 2026: <em>"Compute = GDP."</em> Em nível nacional, o PIB de um país correlaciona com sua capacidade computacional. Em nível empresarial: <em>"Toda receita de uma empresa dependerá do AI compute que ela deployar."</em></div>
+        <div class="innov-card-implication" style="font-size:14px;margin-top:14px">A implicação para investimento: compute não é custo de TI — é fator de produção econômica. Firmas e nações que controlam flops controlam prosperidade futura.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 3. RISCOS -->
+  <div class="section-block">
+    <div class="section-title">3. Riscos, Limitações e Adversidades na Adoção de AI</div>
+    <p class="section-subtitle">Uma visão madura: nem hype ingênuo, nem ceticismo preguiçoso.</p>
+
+    <div class="risk-grid">
+      <div class="risk-card">
+        <span class="risk-badge curto">Curto Prazo</span>
+        <div class="risk-card-title">Alucinação e Falsa Precisão</div>
+        <div class="risk-card-body">LLMs produzem respostas confiantes sobre dados incorretos, precedentes inexistentes ou números inventados. Em special situations: agente que "confirma" termos de contrato ou covenants que na verdade leu incorretamente.</div>
+        <div class="risk-card-mitigation">Mitigação: sempre exigir citação de fonte primária. Nunca usar output de AI como fact final sem verificação humana em dados críticos.</div>
+      </div>
+
+      <div class="risk-card">
+        <span class="risk-badge curto">Curto Prazo</span>
+        <div class="risk-card-title">Garbage In, Garbage Out</div>
+        <div class="risk-card-body">AI amplifica a qualidade dos dados de entrada. Em distressed: dados financeiros de empresas em crise raramente são limpos — demonstrações reapresentadas, inconsistências de notas, relatórios qualificados.</div>
+        <div class="risk-card-mitigation">Mitigação: investimento em data quality é pré-requisito — não opcional.</div>
+      </div>
+
+      <div class="risk-card">
+        <span class="risk-badge curto">Curto Prazo</span>
+        <div class="risk-card-title">Confidencialidade e Vazamento de Dados</div>
+        <div class="risk-card-body">Usar APIs de terceiros com documentos confidenciais de portfólio é risco real de vazamento. Muitas firmas ainda usam ChatGPT na interface pública com dados sensíveis — viola NDAs e cria risco regulatório.</div>
+        <div class="risk-card-mitigation">Mitigação: deploy em ambiente on-premise ou cloud privada com confidential computing. Políticas claras de classificação de dados.</div>
+      </div>
+
+      <div class="risk-card">
+        <span class="risk-badge curto">Curto Prazo</span>
+        <div class="risk-card-title">Modelos Desatualizados e Dependência de Vendor</div>
+        <div class="risk-card-body">LLMs têm knowledge cutoff. Situações que evoluem rapidamente (processos, restructurings, regulação nova) podem ser mal analisadas. Dependência de único vendor cria risco de pricing e interrupção.</div>
+        <div class="risk-card-mitigation">Mitigação: combinar RAG com dados em tempo real. Diversificar modelos (OpenAI + Anthropic + open-source).</div>
+      </div>
+
+      <div class="risk-card">
+        <span class="risk-badge estrutural">Estrutural</span>
+        <div class="risk-card-title">Explicabilidade e Auditabilidade</div>
+        <div class="risk-card-body">Em situações reguladas, a decisão de crédito ou investimento precisa ser explicável. "O modelo disse" não é resposta aceitável para regulador, investidor ou tribunal. LLMs são black boxes — qual peso foi dado a qual variável?</div>
+        <div class="risk-card-mitigation">Mitigação: manter trilha de auditoria de inputs, prompts e outputs. Documentar processo de revisão humana.</div>
+      </div>
+
+      <div class="risk-card">
+        <span class="risk-badge estrutural">Estrutural</span>
+        <div class="risk-card-title">Automação de Erros em Escala</div>
+        <div class="risk-card-body">Se um agente autônomo tiver viés sistemático, vai errar consistentemente — em escala. Um analista humano com viés erra pontualmente. "Jagged intelligence" (Karpathy): o modelo que performa como PhD pode falhar infantilmente ao interpretar um PDF escaneado.</div>
+        <div class="risk-card-mitigation">Mitigação: avaliação contínua dos outputs. Nunca colocar agente autônomo em loop crítico sem checkpoint humano.</div>
+      </div>
+
+      <div class="risk-card">
+        <span class="risk-badge estrutural">Estrutural</span>
+        <div class="risk-card-title">Risco Regulatório</div>
+        <div class="risk-card-body">Reguladores globais desenvolvendo frameworks para AI em serviços financeiros (FINMA, FCA, SEC, CVM). Paisagem ainda em formação. AI em credit scoring pode violar legislação de anti-discriminação se produzir disparate impact — mesmo sem intenção.</div>
+        <div class="risk-card-mitigation">Mitigação: monitorar evolução regulatória ativamente. Não construir dependências críticas antes de ter clareza sobre o framework aplicável.</div>
+      </div>
+
+      <div class="risk-card">
+        <span class="risk-badge estrutural">Estrutural</span>
+        <div class="risk-card-title">Agentes Tomando Ações sem Controle</div>
+        <div class="risk-card-body">Agentes com acesso a sistemas externos (e-mail, trading, CRM, bases jurídicas) podem executar ações irreversíveis com base em inferências incorretas. Karpathy não deu ao agente Dobby acesso a e-mail justamente por isso.</div>
+        <div class="risk-card-mitigation">Mitigação: princípio de menor privilégio. Ações críticas exigem confirmação humana explícita (human-in-the-loop checkpoints).</div>
+      </div>
+    </div>
+
+    <div class="pullquote" style="margin-top:24px">
+      <p>Howard Marks: "Nenhum ativo é tão bom que não possa ficar overpriced e tóxico." O mesmo vale para AI: nenhuma ferramenta é tão poderosa que não possa ser mal usada. O antídoto é o mesmo: disciplina, ceticismo calibrado e preparação para quando as premissas falharem.</p>
+      <cite>— Howard Marks aplicado à AI</cite>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 4. AGENTES -->
+  <div class="section-block">
+    <div class="section-title">4. Agentes de AI Aplicáveis ao Nosso Trabalho</div>
+    <p class="section-subtitle">Para cada agente: problema, usuário principal, autonomia, perfil de implementação e stack mínimo.</p>
+
+    <!-- TABELA -->
+    <div class="agents-table-wrap">
+      <table class="agents-table">
+        <thead>
+          <tr>
+            <th>Agente</th>
+            <th>Problema Resolvido</th>
+            <th>Usuário</th>
+            <th>Autonomia</th>
+            <th>Perfil</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="agent-name">DistressScout</span></td>
+            <td>Identificar sinais de distress e dislocation antes do mercado</td>
+            <td>Originação / PM</td>
+            <td><span class="badge-auto semi">Semi-autônomo</span></td>
+            <td><span class="badge-profile quick">Quick Win</span></td>
+          </tr>
+          <tr>
+            <td><span class="agent-name">JudicialParser</span></td>
+            <td>Extrair e estruturar dados de processos judiciais complexos</td>
+            <td>Analista / Jurídico</td>
+            <td><span class="badge-auto copilot">Copilot</span></td>
+            <td><span class="badge-profile transf">Transformacional</span></td>
+          </tr>
+          <tr>
+            <td><span class="agent-name">ICMemo Bot</span></td>
+            <td>Gerar primeiro rascunho de Investment Committee Memo</td>
+            <td>Analista Senior</td>
+            <td><span class="badge-auto copilot">Copilot</span></td>
+            <td><span class="badge-profile quick">Quick Win</span></td>
+          </tr>
+          <tr>
+            <td><span class="agent-name">PortfolioSentry</span></td>
+            <td>Monitorar eventos e triggers em ativos do portfolio</td>
+            <td>Gestão / PM</td>
+            <td><span class="badge-auto autonomo">Autônomo</span></td>
+            <td><span class="badge-profile quick">Quick Win</span></td>
+          </tr>
+          <tr>
+            <td><span class="agent-name">ContraparteIntel</span></td>
+            <td>Inteligência contínua sobre contraparte, setor e gestão</td>
+            <td>Deal Team</td>
+            <td><span class="badge-auto semi">Semi-autônomo</span></td>
+            <td><span class="badge-profile transf">Transformacional</span></td>
+          </tr>
+          <tr>
+            <td><span class="agent-name">DebtStructure AI</span></td>
+            <td>Analisar e mapear estrutura de capital e covenants</td>
+            <td>Analista / PM</td>
+            <td><span class="badge-auto copilot">Copilot</span></td>
+            <td><span class="badge-profile quick">Quick Win</span></td>
+          </tr>
+          <tr>
+            <td><span class="agent-name">InfraRegMonitor</span></td>
+            <td>Monitorar eventos regulatórios em concessões e infraestrutura</td>
+            <td>Infra Team</td>
+            <td><span class="badge-auto autonomo">Autônomo</span></td>
+            <td><span class="badge-profile transf">Transformacional</span></td>
+          </tr>
+          <tr>
+            <td><span class="agent-name">NPLSorter</span></td>
+            <td>Triagem e scoring de carteiras de NPL</td>
+            <td>Crédito / Analista</td>
+            <td><span class="badge-auto semi">Semi-autônomo</span></td>
+            <td><span class="badge-profile transf">Transformacional</span></td>
+          </tr>
+          <tr>
+            <td><span class="agent-name">DealMemo Scribe</span></td>
+            <td>Automação de relatórios e atualizações de deal status</td>
+            <td>Analista</td>
+            <td><span class="badge-auto copilot">Copilot</span></td>
+            <td><span class="badge-profile quick">Quick Win</span></td>
+          </tr>
+          <tr>
+            <td><span class="agent-name">MacroSignal Bot</span></td>
+            <td>Monitorar catalysts macro relevantes para posições ativas</td>
+            <td>PM / Research</td>
+            <td><span class="badge-auto autonomo">Autônomo</span></td>
+            <td><span class="badge-profile quick">Quick Win</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- DETALHAMENTO -->
+    <h3 class="section-title" style="margin-top:40px;font-size:17px">Detalhamento dos Agentes Prioritários</h3>
+
+    <div class="agent-detail">
+      <div class="agent-detail-header">
+        <div class="agent-detail-name">DistressScout</div>
+        <div class="agent-detail-badges">
+          <span class="badge-auto semi">Semi-autônomo</span>
+          <span class="badge-profile quick">Quick Win</span>
+        </div>
+      </div>
+      <div class="agent-detail-grid">
+        <div class="agent-field">
+          <div class="agent-field-label">Problema</div>
+          <div class="agent-field-value">Identificar sinais precoces de estresse financeiro, operacional ou jurídico em empresas fora de radar — antes que a oportunidade apareça no mercado de crédito.</div>
+        </div>
+        <div class="agent-field">
+          <div class="agent-field-label">Usuário Principal</div>
+          <div class="agent-field-value">Equipe de Originação / Portfolio Manager</div>
+        </div>
+        <div class="agent-field full">
+          <div class="agent-field-label">Inputs</div>
+          <div class="agent-field-value">DOU (Diário Oficial), TJSP/STJ (petições, execuções), CVM (fatos relevantes, ITRs), SERASA/Boa Vista, LinkedIn (mudanças de gestão), mídia setorial, dados de CNPJ/Receita.</div>
+        </div>
+        <div class="agent-field full">
+          <div class="agent-field-label">Output</div>
+          <div class="agent-field-value">Relatório semanal de alertas: empresas com sinais de distress classificadas por setor, nível de urgência e tipo de sinal (judicial, financeiro, operacional). Sugestão de próximos passos.</div>
+        </div>
+        <div class="agent-field full">
+          <div class="agent-field-label">Stack Mínimo</div>
+          <div class="agent-field-value"><strong>Python + Playwright</strong> (web scraping) ou APIs (DOU API, JusBrasil API, CVM API) + <strong>LLM (Claude / GPT-4)</strong> + vector database para deduplicação + e-mail ou Slack para entrega. Protótipo funcional em 2–4 semanas.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="agent-detail">
+      <div class="agent-detail-header">
+        <div class="agent-detail-name">JudicialParser</div>
+        <div class="agent-detail-badges">
+          <span class="badge-auto copilot">Copilot</span>
+          <span class="badge-profile transf">Transformacional</span>
+        </div>
+      </div>
+      <div class="agent-detail-grid">
+        <div class="agent-field">
+          <div class="agent-field-label">Problema</div>
+          <div class="agent-field-value">Processar e estruturar informações de processos judiciais complexos (falência, recuperação judicial, execuções fiscais, arbitragem) — tarefa que hoje consome horas de analistas e advogados.</div>
+        </div>
+        <div class="agent-field">
+          <div class="agent-field-label">Output</div>
+          <div class="agent-field-value">Partes envolvidas, histórico cronológico, pedidos, principais riscos, valor em disputa, estágio processual, próximos eventos, análise de probabilidade de êxito por tese.</div>
+        </div>
+        <div class="agent-field full">
+          <div class="agent-field-label">Stack Mínimo</div>
+          <div class="agent-field-value"><strong>Claude/GPT-4 com contexto longo (200K tokens)</strong> + PyMuPDF (extração de PDF) + prompts especializados em direito civil/comercial/falimentar + template de output padronizado. Muda completamente a capacidade de processar carteiras de NPL.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="agent-detail">
+      <div class="agent-detail-header">
+        <div class="agent-detail-name">PortfolioSentry</div>
+        <div class="agent-detail-badges">
+          <span class="badge-auto autonomo">Autônomo</span>
+          <span class="badge-profile quick">Quick Win</span>
+        </div>
+      </div>
+      <div class="agent-detail-grid">
+        <div class="agent-field">
+          <div class="agent-field-label">Problema</div>
+          <div class="agent-field-value">Monitoramento contínuo de portfolio é impossível de fazer bem manualmente. Eventos críticos (default, mudança de controle, trigger de covenant, notícia adversa) precisam de atenção imediata.</div>
+        </div>
+        <div class="agent-field">
+          <div class="agent-field-label">Output</div>
+          <div class="agent-field-value">Alertas em tempo real via Slack/e-mail categorizados por urgência. Dashboard de status. Relatório semanal de eventos relevantes por posição.</div>
+        </div>
+        <div class="agent-field full">
+          <div class="agent-field-label">Stack Mínimo</div>
+          <div class="agent-field-value"><strong>Python + APIs de monitoramento + LLM para classificação de relevância + Slack/e-mail webhook</strong> + base de dados de portfolio. Quick Win para versão básica (alertas de notícias e CVM). Transformacional com integração judicial e regulatória.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="agent-detail">
+      <div class="agent-detail-header">
+        <div class="agent-detail-name">NPLSorter</div>
+        <div class="agent-detail-badges">
+          <span class="badge-auto semi">Semi-autônomo</span>
+          <span class="badge-profile transf">Transformacional</span>
+        </div>
+      </div>
+      <div class="agent-detail-grid">
+        <div class="agent-field">
+          <div class="agent-field-label">Problema</div>
+          <div class="agent-field-value">Triagem de carteiras de NPL é processo intensivo: centenas de contratos, processos judiciais, garantias. Identificar créditos com maior valor de recuperação exige análise que hoje leva semanas.</div>
+        </div>
+        <div class="agent-field">
+          <div class="agent-field-label">Output</div>
+          <div class="agent-field-value">Score de recuperabilidade por crédito. Segmentação da carteira. Top N créditos para investigação aprofundada. Flags de risco por tipo (garantia, devedor, jurídico, prescrição).</div>
+        </div>
+        <div class="agent-field full">
+          <div class="agent-field-label">Stack Mínimo</div>
+          <div class="agent-field-value"><strong>Python + pandas</strong> (dados estruturados) + <strong>LLM</strong> (documentos não-estruturados) + scoring model customizado + output em dashboard ou planilha. Impacto direto em edge de originação e recuperação em NPL.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- 5. STACK -->
+  <div class="section-block">
+    <div class="section-title">5. O Stack do Analista de Special Situations</div>
+    <p class="section-subtitle">Três camadas de maturidade — do mínimo viável ao edge estrutural.</p>
+
+    <!-- NÍVEL 1 -->
+    <div class="stack-level">
+      <div class="stack-level-header l1">
+        <div class="stack-badge l1">1</div>
+        <div>
+          <div class="stack-level-title">Stack Mínimo — Começar Amanhã</div>
+          <div class="stack-level-subtitle">Opera 5–10× mais rápido em pesquisa, redação e análise. Tempo de setup: 1 dia.</div>
+        </div>
+        <div class="stack-level-cost">~$20–40/mês</div>
+      </div>
+      <div class="stack-tools">
+        <div class="stack-tool">
+          <div class="stack-tool-label">Mindset</div>
+          <div class="stack-tool-body">AI não é busca avançada — é raciocínio delegável. Aprender prompting estruturado: contexto + papel + instrução + formato + restrições. Identificar onde o modelo alucina no seu domínio é mais valioso do que saber onde ele acerta.</div>
+        </div>
+        <div class="stack-tool">
+          <div class="stack-tool-label">Ferramentas</div>
+          <div class="stack-tool-body">
+            <ul>
+              <li><strong>Claude.ai Pro ou ChatGPT Plus</strong>: análise de documentos longos (~$20–40/mês)</li>
+              <li><strong>Perplexity Pro</strong>: pesquisa com citação de fontes em tempo real</li>
+              <li><strong>NotebookLM</strong>: upload de múltiplos documentos, chat contextualizado</li>
+              <li><strong>PDF tools</strong>: Adobe Acrobat AI ou Kagi Summary</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NÍVEL 2 -->
+    <div class="stack-level">
+      <div class="stack-level-header l2">
+        <div class="stack-badge l2">2</div>
+        <div>
+          <div class="stack-level-title">Stack Intermediário — Produtividade Real</div>
+          <div class="stack-level-subtitle">Automatiza rotinas, ganha velocity em due diligence, começa a construir inteligência proprietária.</div>
+        </div>
+        <div class="stack-level-cost">$200–500/mês</div>
+      </div>
+      <div class="stack-tools">
+        <div class="stack-tool">
+          <div class="stack-tool-label">Automação e Workflows</div>
+          <div class="stack-tool-body">
+            <ul>
+              <li><strong>Make.com ou n8n</strong>: automação no-code/low-code — base do PortfolioSentry básico</li>
+              <li><strong>Zapier + OpenAI/Claude API</strong>: triggers automáticos de fontes monitoradas</li>
+              <li><strong>Slack ou Teams</strong> como interface central: agentes entregam alertas no canal relevante</li>
+            </ul>
+          </div>
+        </div>
+        <div class="stack-tool">
+          <div class="stack-tool-label">Modelagem e Dados</div>
+          <div class="stack-tool-body">
+            <ul>
+              <li><strong>Excel/Google Sheets + Copilot</strong>: análise com linguagem natural</li>
+              <li><strong>Python básico via Claude/GPT</strong>: parsing de PDFs, scraping. Não precisa saber programar — precisa saber prompt.</li>
+              <li><strong>Airtable ou Notion</strong>: deal pipeline que alimenta agentes</li>
+            </ul>
+          </div>
+        </div>
+        <div class="stack-tool">
+          <div class="stack-tool-label">Bases de Dados e Fontes</div>
+          <div class="stack-tool-body">
+            <ul>
+              <li><strong>JusBrasil Pro</strong>: acesso a processos via API — fundamental para JudicialParser</li>
+              <li><strong>CVM API e DOU API</strong>: dados regulatórios e societários</li>
+              <li><strong>Bloomberg ou Refinitiv</strong>: integração com LLM via exportações</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NÍVEL 3 -->
+    <div class="stack-level">
+      <div class="stack-level-header l3">
+        <div class="stack-badge l3">3</div>
+        <div>
+          <div class="stack-level-title">Stack Avançado — Vantagem Competitiva</div>
+          <div class="stack-level-subtitle">Transforma AI em infraestrutura de decisão proprietária. Constrói ativos de inteligência que se compõem ao longo do tempo.</div>
+        </div>
+        <div class="stack-level-cost">$1K–5K/mês + eng.</div>
+      </div>
+      <div class="stack-tools">
+        <div class="stack-tool">
+          <div class="stack-tool-label">Agent Building</div>
+          <div class="stack-tool-body">
+            <ul>
+              <li><strong>LangChain ou LangGraph</strong>: framework para agentes com memória, tools e fluxos complexos</li>
+              <li><strong>OpenClaw</strong>: agentes com ciclos longos, memória persistente e operação autônoma</li>
+              <li><strong>Claude API + system prompts especializados</strong>: agentes verticalizados em credit analysis, legal parsing</li>
+            </ul>
+          </div>
+        </div>
+        <div class="stack-tool">
+          <div class="stack-tool-label">Infraestrutura de Dados</div>
+          <div class="stack-tool-body">
+            <ul>
+              <li><strong>Vector database (Pinecone, Chroma)</strong>: indexação semântica de due diligences anteriores, IC memos, contratos</li>
+              <li><strong>Data pipeline estruturado</strong>: ingestão automatizada de DOU, CVM, JusBrasil, mídia</li>
+              <li><strong>Supabase ou PostgreSQL</strong>: base estruturada de portfolio com metadados ricos</li>
+            </ul>
+          </div>
+        </div>
+        <div class="stack-tool">
+          <div class="stack-tool-label">Governança e Segurança</div>
+          <div class="stack-tool-body">
+            <ul>
+              <li><strong>Deploy em ambiente privado</strong> (AWS, Azure, GCP) para documentos confidenciais</li>
+              <li><strong>Logging e auditoria</strong> de todos os outputs: quem perguntou o quê, qual a resposta, com base em quais fontes</li>
+              <li><strong>Human-in-the-loop checkpoints</strong>: definir explicitamente quais decisões nunca podem ser tomadas sem revisão humana</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HÁBITOS OPERACIONAIS -->
+    <div style="margin-top:32px">
+      <div class="section-title" style="font-size:17px">Hábitos Operacionais</div>
+      <div class="habits-list" style="margin-top:16px">
+        <div class="habit-item">
+          <div class="habit-icon">↻</div>
+          <div class="habit-text">Reavalie seu stack a cada <strong>4–6 semanas</strong>. O landscape muda mais rápido do que qualquer ciclo de planejamento anual.</div>
+        </div>
+        <div class="habit-item">
+          <div class="habit-icon">◈</div>
+          <div class="habit-text">Construa <strong>"prompts mestres"</strong> para seus casos de uso mais frequentes. Trate-os como ativos: documente, versione e melhore.</div>
+        </div>
+        <div class="habit-item">
+          <div class="habit-icon">▲</div>
+          <div class="habit-text">Meça output de AI como mediria output de analista: <strong>velocidade, qualidade, taxa de erro, custo por tarefa</strong>.</div>
+        </div>
+        <div class="habit-item">
+          <div class="habit-icon">⬡</div>
+          <div class="habit-text">Compartilhe aprendizados com o time semanalmente. <strong>Conhecimento de AI se compõe em equipe</strong>, não isoladamente.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ──────────────────────────────────────── -->
+  <!-- BLOCO C — FINAL REMARKS                 -->
+  <!-- ──────────────────────────────────────── -->
+  <div class="bloco-label">Bloco C — Final Remarks</div>
+
+  <div class="closing-section">
+    <div class="closing-label">Uma provocação</div>
+    <div class="closing-title">
+      Em 1997, um analista experiente olharia para a internet e diria:<br>
+      "Interessante, mas não muda como eu analiso uma empresa."
+    </div>
+    <p class="closing-body">
+      Ele não estava errado sobre os fundamentos de análise. Mas estava catastroficamente errado sobre o que estava chegando. Estamos exatamente nesse momento com AI — e o que está chegando é mais rápido, mais profundo e mais difícil de prever do que a internet.
+    </p>
+    <p class="closing-body">
+      Jensen Huang disse esta semana que compute vai se tornar o PIB das nações. Karpathy não escreve código há meses — ele orquestra agentes que constroem sistemas complexos enquanto dorme. Goldman está deployando agentes autônomos como engenheiros digitais. XTX está processando $250 bilhões por dia com chips de AI.
+    </p>
+    <p class="closing-body">
+      Não somos uma empresa de tecnologia. Mas somos uma empresa de informação, de análise e de julgamento. E nesse mundo que está emergindo, a diferença entre uma firma que constrói uma camada de inteligência proprietária sobre seu domínio e uma que não constrói não é mais eficiência — <strong style="color:#fff">é existência.</strong>
+    </p>
+    <p class="closing-body">
+      Nada disso substitui o julgamento humano que nos trouxe até aqui. O que muda é <em>onde</em> esse julgamento é aplicado. Você para de gastar horas compilando dados e começa a gastar horas no que realmente importa: a decisão.
+    </p>
+    <p class="closing-body" style="font-weight:600;color:rgba(255,255,255,0.9)">
+      Saímos de San Francisco com a convicção de que o tabuleiro mudou. A pergunta não é mais se vamos adotar AI. A pergunta é se vamos construir com inteligência, com segurança e com urgência — ou se vamos deixar outros construírem enquanto ainda estamos debatendo. <span style="color:var(--gold)">O momento é agora.</span>
+    </p>
+
+    <div class="closing-agents">
+      <div class="closing-agent-item">
+        <div class="closing-agent-name">DistressScout</div>
+        <div class="closing-agent-desc">Varre o Brasil inteiro toda madrugada buscando sinais que nenhum analista poderia encontrar.</div>
+      </div>
+      <div class="closing-agent-item">
+        <div class="closing-agent-name">JudicialParser</div>
+        <div class="closing-agent-desc">Lê 500 páginas de falência em 10 minutos e entrega um relatório estruturado.</div>
+      </div>
+      <div class="closing-agent-item">
+        <div class="closing-agent-name">PortfolioSentry</div>
+        <div class="closing-agent-desc">Detecta deterioração antes que o devedor te ligue. 24/7, sem pausas.</div>
+      </div>
+    </div>
+
+    <a href="9_situational_awareness.html" class="closing-cta">Próximo: Situational Awareness →</a>
+  </div>
+
+  <!-- PAGE NAV -->
+  <div class="page-nav">
+    <a href="7_revolut_summary.html" class="prev">Revolut</a>
+    <a href="9_situational_awareness.html" class="next">Situational Awareness</a>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">GTC 2026 — Intelligence Briefing</div>
+    <ul class="footer-links">
+      <li><a href="index.html">Início</a></li>
+      <li><a href="7_revolut_summary.html">Revolut</a></li>
+      <li><a href="9_situational_awareness.html">Situational Awareness</a></li>
+    </ul>
+    <div class="footer-note">Março 2026 · Material Confidencial</div>
+  </div>
+</footer>
+
+<script src="assets/nav.js"></script>
+</body>
+</html>
